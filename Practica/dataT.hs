@@ -30,11 +30,28 @@ getDay(Date num _ _) = num
 getMonth(Date _ mes _) = mes
 getYear(Date _ _ year) = year
 
+{-
+    Crea arboles, caso base es cuando nos dan 1 numero y un arbol vacio, regresar ese nodo con dos vacios debajo de el
+    en otro caso comparar, si es == no se agrega nada, si es < se va a la izq y si no derecha
+-}
 insertt x EmptyTree = Node x EmptyTree EmptyTree
 insertt x (Node z left right) 
         | x==z      = Node z left right
         | x <z      = Node z (insertt x left) right
         | otherwise = Node z left (insertt x right) 
+
+{-
+    Recibe una lista de elementos, ejecuta una funcion llamada ft la cual recibe 3 parametros
+        valor_a_insertar (head:tail de elementos restantes) arbol_actual
+    Cuando (tail == []) => se acabo el arreglo
+        1) insertar valor_a_insertar en arbol_actual
+        2) insertar head en el resultado de 1)
+    De otra forma se ejecuta la funcion ft (head tail arbol_actual) 
+-}
+toTree (f:l) = ft f l EmptyTree 
+         where ft (val) (h:t) (currentTree)
+                | t == []   = insertt h (insertt val currentTree)
+                | otherwise = ft h t (insertt val currentTree) 
 
 main = do
     let circ = Circle 3.2
@@ -57,7 +74,6 @@ main = do
     let myList2 = Concat 8 myList
     print myList2
                 
-    let arbol = Node 7 (Node 6 EmptyTree EmptyTree) (Node 9 EmptyTree EmptyTree)
     {-
     arbol
         7
@@ -71,8 +87,11 @@ main = do
           /
         8
     -}
-    print( insertt 8 arbol)
-
+    let arbol = Node 7 (Node 6 EmptyTree EmptyTree) (Node 9 EmptyTree EmptyTree)
+    print arbol
+    print ( insertt 8 arbol)
+    let lista = [6,8,9,1,2]
+    print ( toTree lista  )
     print("END")
     
     
