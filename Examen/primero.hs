@@ -6,7 +6,7 @@ let divisibles x _nums= length [y | y <- [1.._nums], mod x y == 0 ] == _nums
 let d totalNums = [y | y <- [totalNums..], divisibles y totalNums]
 -- Que nos regrese la head nada mas
 let firstDivByNumsIn num = head (d num)
-print(firstDivByNumsIn 20)   --Resultado: 232,792,560
+print(firstDivByNumsIn 1)   --Resultado: 232,792,560
 
 -- Mandar a llamar 'obtener' con un arreglo infinito
 -- obtener tiene el caso base cuando su head es 1, regresar 1 concatenado con el resultado de obtain tail
@@ -18,4 +18,13 @@ let primes nth = obtain [1..] !! nth
              where obtain (p:xs) 
                     | p == 1 = 1: obtain xs 
                     | otherwise = p: obtain [ x|x <- xs, mod x p > 0 ] --Infinito
-print(primes 10) -- Resultado: 104,743
+print(primes 0) -- Resultado: 104,743
+
+let palindromoDigits numDigits = maximum [x | y<-[10^(numDigits-1)..10^(numDigits)-1], z<-[y..10^(numDigits)-1], --Operaciones
+                                    let x=y*z,      --Hacer la operacion
+                                    let s=show x,   --Convertir a texto(lista chars)
+                                    s==reverse s]   --Lista == Lista invertida?
+
+print (palindromoDigits 3) --3 Digitos Resultado 906609
+
+
