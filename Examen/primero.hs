@@ -12,6 +12,8 @@ firstDivByNumsIn num = head (div_inf num)
 -- en todos los demas casos se concatena la head p con los numeros del infinito que su resultado de XmodP mayor a 0
 -- En realidad concatena con todos los que numeros mayores a el que no son divisibles por el
 -- El siguiente elemento hace lo mismo, eliminando divisibles por el...la evaluacion es infinita
+-- La segunda pasada eliminaria los divisibles por 2(Pares) y regresa 2 como primo
+-- La tercer pasada eliminaria los divisibles por 3 y regresa 3 como primo
 -- Cortamos el ciclo infinito usando el !! nth
 primes nth = obtain [1..] !! nth 
          where obtain (p:xs) 
