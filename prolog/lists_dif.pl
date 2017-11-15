@@ -1,3 +1,4 @@
+%% A01019102
 myAppend(A,B,B,A).
 %myAppend([1,2,3|B],B,[4,5],X).
 %myAppend([1,2,3],X,[5,6,|Y],Y).
