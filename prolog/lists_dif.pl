@@ -27,9 +27,9 @@ nonDiv(N,D) :- N > D,
 			   nonDiv(N,D1).
 %Antes estana permutation(NumL,N) en lugar de rotateL(NumL,N), por eso no jalaba
 is_prime(Num) :- Num>1, nonDiv(Num,2). %%num deberia ser raiz +1  
-is_not_circular_prime(Num):- number_chars(Num,NumL),rotateL(NumL,N),number_chars(PerNum,N),\+is_prime(PerNum).
+is_not_circular_prime(Num):- number_chars(Num,NumL),rotateL(NumL,N),number_chars(PerNum,N),\+is_prime(PerNum),!.
 is_circular_prime(Num):- \+is_not_circular_prime(Num).
 
 main:-
-	is_circular_prime(1931),
+	is_circular_prime(199933),
 	write(1).
