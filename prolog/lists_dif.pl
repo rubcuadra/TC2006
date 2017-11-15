@@ -22,8 +22,10 @@ nonDiv(N,D) :- N > D,
   			   N mod D =\= 0,               
   			   D1 is D + 1,                 
 			   nonDiv(N,D1).
+%% Hace tooodas las permutaciones, limitar a slo circular
 is_prime(Num) :- Num>1, nonDiv(Num,2). %%num deberia ser raiz +1  
-is_circular_prime(Num):-number_chars(Num,NumL),permutation(NumL,N),number_chars(PerNum,N),is_prime(PerNum).
+is_not_circular_prime(N):- number_chars(Num,NumL),permutation(NumL,N),number_chars(PerNum,N),\+is_prime(PerNum).
+is_circular_prime(Num):- \+is_not_circular_prime(Num).
 
 main:-
 	is_circular_prime(1931),
