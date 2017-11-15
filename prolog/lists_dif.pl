@@ -16,15 +16,18 @@ sumpot(X,Y,Z):- tabla(X,Y,Z),!.
 sumpot(X,Y,Z):- Z is (X+Y)*(X+Y), assert(tabla(X,Y,Z)).
 
 
+rotateL([E|T], R) :- append(T,[E],R).
+rotateR(L,R) :- rotateL(R, L).
+
 :-dynamic is_prime/1.
 nonDiv(N,D) :- N =< D.
 nonDiv(N,D) :- N > D,                 
   			   N mod D =\= 0,               
   			   D1 is D + 1,                 
 			   nonDiv(N,D1).
-%% Hace tooodas las permutaciones, limitar a slo circular
+%Antes estana permutation(NumL,N) en lugar de rotateL(NumL,N), por eso no jalaba
 is_prime(Num) :- Num>1, nonDiv(Num,2). %%num deberia ser raiz +1  
-is_not_circular_prime(N):- number_chars(Num,NumL),permutation(NumL,N),number_chars(PerNum,N),\+is_prime(PerNum).
+is_not_circular_prime(Num):- number_chars(Num,NumL),rotateL(NumL,N),number_chars(PerNum,N),\+is_prime(PerNum).
 is_circular_prime(Num):- \+is_not_circular_prime(Num).
 
 main:-
