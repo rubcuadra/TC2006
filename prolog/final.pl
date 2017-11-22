@@ -80,7 +80,6 @@ minInTree(nil,Res,Res).
 minInTree(t(V,L,_),Res,_) :- minInTree(L,Res,V).
 minInTree(t(V,L,_),Res) :- minInTree(L,Res,V).
 
-
 main :-
 	Tree = t(8,t(4,t(2,nil,nil),nil),nil),
 	inTree( 8, Tree ),
